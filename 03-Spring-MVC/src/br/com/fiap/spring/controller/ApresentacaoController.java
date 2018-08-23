@@ -12,7 +12,7 @@ import br.com.fiap.spring.model.Apresentacao;
 @RequestMapping("apresentacao")
 public class ApresentacaoController {
 
-	@GetMapping("cadastrar") // URL: apresentação/cadastrar
+	@GetMapping("cadastrar") // URL: apresentacao/cadastrar
 	public String formApresentacao() {
 		return "apresentacao/form";
 	}
