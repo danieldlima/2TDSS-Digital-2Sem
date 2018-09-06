@@ -23,6 +23,23 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoDAO dao;
 	
+	@GetMapping("pesquisa")
+	public ModelAndView pesquisar(String buscaProduto) {
+		return new ModelAndView("produto/lista").addObject("produtos", dao.buscarPorNome(buscaProduto)); // Envia a lista de produtos
+	}
+	
+	@Transactional	
+	@PostMapping("remover")
+	public String remover(int id, RedirectAttributes redirectAttibutes) {
+		try {
+			dao.remover(id);
+			redirectAttibutes.addFlashAttribute("msg", "Produto excluido com sucesso!");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/produto/listar";	
+	}
+	
 	@GetMapping("cadastrar")
 	public String formCadastro() {
 		return "produto/form";
@@ -58,10 +75,6 @@ public class ProdutoController {
 		return new ModelAndView("redirect:/produto/editar/" + produto.getCodigo());
 	}
 	
-	/*@PostMapping("editar/{id}")
-	public ModelAndView remover(@PathVariable("id") int id) {
-		//dao.remover(id);
-		return new ModelAndView();
-	}*/
+	
 
 }
