@@ -20,7 +20,6 @@ import br.com.fiap.jpa.model.Produto;
 @RequestMapping("produto")
 public class ProdutoController {
 	
-	@Autowired
 	private ProdutoDAO dao;
 	
 	@GetMapping("pesquisa")
